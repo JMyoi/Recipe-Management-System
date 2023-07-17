@@ -1,5 +1,5 @@
 'use strict';
-
+//this is to populate databse with intial records
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {

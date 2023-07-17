@@ -62,6 +62,7 @@ app.post("/recipes", async(req, res) =>{
         const newRecipe = await recipe.create(req.body);
         res.status(201).json(newRecipe);
     } catch (error) {
+      //check if the error was from sequalize validator so that it can send the correct 422 instead of 500
       if(error.name === 'SequelizeValidationError'){
         return res.status(422).json({errors:error.errors.map(e=>e.message)});
       }
@@ -83,6 +84,7 @@ app.patch("/recipes/:id", async(req, res)=>{
         }
   
     }catch(error){
+      //check if the error was from sequalize validator so that it can send the correct 422 instead of 500
       if(error.name === 'SequelizeValidationError'){
         return res.status(422).json({errors:error.errors.map(e=>e.message)});
       }
@@ -105,10 +107,8 @@ app.delete("/recipes/:id", async(req, res)=>{
         }else{
           res.status(404).send({message: "Recipe not found"});
         }
-  
     }catch(error){
       console.log(error);
       res.status(500).json({message: "Something went wrong"});
     }
-  
   });

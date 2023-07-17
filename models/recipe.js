@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      validate:{// title has to be at least 3 characters long
         atLeastThree(value){
           if(value.length<3){
             throw new Error("Minimum of 3 characters required");
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      validate:{//description has to be no more than 500 characters long
         max500(value){
           if(value.length>500){
             throw new Error("Maximum of 500 characters allowed");
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     ingredients: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      validate:{//ingredients has to be no more than 1000 characters long
         max1000(value){
           if(value.length>1000){
             throw new Error("maximum of 1000 characters allowed");
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
     instructions: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
+      validate:{//instructions has to be no more than 5000 characters long
         max5000(value){
           if(value.length>5000){
             throw new Error("maximum of 5000 characters allowed");
